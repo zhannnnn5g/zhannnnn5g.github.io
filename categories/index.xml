@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on zhan5g&#39;s Blog</title>
+    <link>http://zhannnnn5g.github.io/categories/</link>
+    <description>Recent content in Categories on zhan5g&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 29 Aug 2019 14:30:10 +0800</lastBuildDate>
+    
+	<atom:link href="http://zhannnnn5g.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hugo</title>
+      <link>http://zhannnnn5g.github.io/categories/Hugo/</link>
+      <pubDate>Thu, 29 Aug 2019 14:30:10 +0800</pubDate>
+      
+      <guid>http://zhannnnn5g.github.io/categories/Hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>VSCode</title>
+      <link>http://zhannnnn5g.github.io/categories/VSCode/</link>
+      <pubDate>Tue, 27 Aug 2019 14:47:33 +0800</pubDate>
+      
+      <guid>http://zhannnnn5g.github.io/categories/VSCode/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

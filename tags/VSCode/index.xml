@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VSCode on zhan5g&#39;s Blog</title>
+    <link>http://zhannnnn5g.github.io/tags/VSCode/</link>
+    <description>Recent content in VSCode on zhan5g&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 27 Aug 2019 14:47:33 +0800</lastBuildDate>
+    
+	<atom:link href="http://zhannnnn5g.github.io/tags/VSCode/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>C&#43;&#43;-VSCode开发环境设置</title>
+      <link></link>
+      <pubDate>Tue, 27 Aug 2019 14:47:33 +0800</pubDate>
+      
+      <guid></guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Go-VSCode开发环境设置</title>
+      <link></link>
+      <pubDate>Tue, 27 Aug 2019 14:42:33 +0800</pubDate>
+      
+      <guid></guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Markdown-Github风格Markdown语法</title>
+      <link></link>
+      <pubDate>Mon, 26 Aug 2019 14:57:10 +0800</pubDate>
+      
+      <guid></guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Markdown-VSCode中常用操作总结</title>
+      <link></link>
+      <pubDate>Fri, 23 Aug 2019 18:19:33 +0800</pubDate>
+      
+      <guid></guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>VSCode-常用插件总结</title>
+      <link>http://zhannnnn5g.github.io/post/MyBlogs/VSCode/VSCode-%E5%B8%B8%E7%94%A8%E6%8F%92%E4%BB%B6%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Wed, 21 Aug 2019 17:42:33 +0800</pubDate>
+      
+      <guid>http://zhannnnn5g.github.io/post/MyBlogs/VSCode/VSCode-%E5%B8%B8%E7%94%A8%E6%8F%92%E4%BB%B6%E6%80%BB%E7%BB%93/</guid>
+      <description>&lt;h2 id=&#34;markdown插件&#34;&gt;Markdown插件&lt;/h2&gt;
+
+&lt;h3 id=&#34;markdown-all-in-one&#34;&gt;Markdown All in One&lt;/h3&gt;
+
+&lt;p&gt;这个插件直接集成了大部分我们撰写 Markdown 时所需要辅助功能，比如进行问字加粗，斜体，表格对其等格式化，本地图片的路径自动补全等。&lt;/p&gt;
+
+&lt;p&gt;另外，本插件直接提供了基于 LaTeX 的数学公式渲染，支持行内数学公式，以及整段的数学公式。这样我们就不必再单独安装LaTex相关的插件了（比如 Markdown Math 插件）。&lt;/p&gt;
+
+&lt;p&gt;但是 Markdown All in One 并没有支持 Mermaid 渲染引擎，所以如果要在VSCode中支持流程图，时序图，甘特图的话，需要安装其它插件，比如 Markdown Preview Mermaid Support。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>zhan5g&#39;s Blog</title>
+    <link>http://zhannnnn5g.github.io/</link>
+    <description>Recent content on zhan5g&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 27 Aug 2019 14:30:10 +0800</lastBuildDate>
+    
+	<atom:link href="http://zhannnnn5g.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hugo-托管Markdown文档与站点源码</title>
+      <link>http://zhannnnn5g.github.io/post/MyBlogs/Hugo/Hugo-%E6%89%98%E7%AE%A1Markdown%E6%96%87%E6%A1%A3%E4%B8%8E%E7%AB%99%E7%82%B9%E6%BA%90%E7%A0%81/</link>
+      <pubDate>Tue, 27 Aug 2019 14:30:10 +0800</pubDate>
+      
+      <guid>http://zhannnnn5g.github.io/post/MyBlogs/Hugo/Hugo-%E6%89%98%E7%AE%A1Markdown%E6%96%87%E6%A1%A3%E4%B8%8E%E7%AB%99%E7%82%B9%E6%BA%90%E7%A0%81/</guid>
+      <description>&lt;h2 id=&#34;托管markdown文档&#34;&gt;托管Markdown文档&lt;/h2&gt;
+
+&lt;h3 id=&#34;为markdown文档创建私有仓库&#34;&gt;为Markdown文档创建私有仓库&lt;/h3&gt;
+
+&lt;p&gt;为了Markdown文档的保密性，通常我们不会直接把Markdown文档的源文件直接托管在静态站点上，而是将其单独存放于一个非公开的仓库中。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Hugo-在一台主机上管理多个SSH密钥</title>
+      <link>http://zhannnnn5g.github.io/post/MyBlogs/Hugo/Hugo-%E5%9C%A8%E4%B8%80%E5%8F%B0%E4%B8%BB%E6%9C%BA%E4%B8%8A%E7%AE%A1%E7%90%86%E5%A4%9A%E4%B8%AASSH%E5%AF%86%E9%92%A5/</link>
+      <pubDate>Mon, 26 Aug 2019 16:52:33 +0800</pubDate>
+      
+      <guid>http://zhannnnn5g.github.io/post/MyBlogs/Hugo/Hugo-%E5%9C%A8%E4%B8%80%E5%8F%B0%E4%B8%BB%E6%9C%BA%E4%B8%8A%E7%AE%A1%E7%90%86%E5%A4%9A%E4%B8%AASSH%E5%AF%86%E9%92%A5/</guid>
+      <description>&lt;h2 id=&#34;生成多个ssh密钥&#34;&gt;生成多个ssh密钥&lt;/h2&gt;
+
+&lt;h3 id=&#34;ssh-keygen用法&#34;&gt;ssh-keygen用法&lt;/h3&gt;</description>
+    </item>
+    
+    <item>
+      <title>Hugo-环境配置</title>
+      <link>http://zhannnnn5g.github.io/post/MyBlogs/Hugo/Hugo-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Mon, 26 Aug 2019 14:57:10 +0800</pubDate>
+      
+      <guid>http://zhannnnn5g.github.io/post/MyBlogs/Hugo/Hugo-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</guid>
+      <description>&lt;h2 id=&#34;安装hugo&#34;&gt;安装Hugo&lt;/h2&gt;
+
+&lt;p&gt;在&lt;a href=&#34;https://github.com/gohugoio/hugo/releases&#34;&gt;官网&lt;/a&gt;下载Windows版本的Hugo安装包，我下载的版本是&lt;code&gt;hugo_0.57.0_Windows-64bit.zip&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;解压到目录，比如&lt;code&gt;D:\MyHugo&lt;/code&gt;，并将该路径添加到“环境变量”中。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>VSCode-常用插件总结</title>
+      <link>http://zhannnnn5g.github.io/post/MyBlogs/VSCode/VSCode-%E5%B8%B8%E7%94%A8%E6%8F%92%E4%BB%B6%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Wed, 21 Aug 2019 17:42:33 +0800</pubDate>
+      
+      <guid>http://zhannnnn5g.github.io/post/MyBlogs/VSCode/VSCode-%E5%B8%B8%E7%94%A8%E6%8F%92%E4%BB%B6%E6%80%BB%E7%BB%93/</guid>
+      <description>&lt;h2 id=&#34;markdown插件&#34;&gt;Markdown插件&lt;/h2&gt;
+
+&lt;h3 id=&#34;markdown-all-in-one&#34;&gt;Markdown All in One&lt;/h3&gt;
+
+&lt;p&gt;这个插件直接集成了大部分我们撰写 Markdown 时所需要辅助功能，比如进行问字加粗，斜体，表格对其等格式化，本地图片的路径自动补全等。&lt;/p&gt;
+
+&lt;p&gt;另外，本插件直接提供了基于 LaTeX 的数学公式渲染，支持行内数学公式，以及整段的数学公式。这样我们就不必再单独安装LaTex相关的插件了（比如 Markdown Math 插件）。&lt;/p&gt;
+
+&lt;p&gt;但是 Markdown All in One 并没有支持 Mermaid 渲染引擎，所以如果要在VSCode中支持流程图，时序图，甘特图的话，需要安装其它插件，比如 Markdown Preview Mermaid Support。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

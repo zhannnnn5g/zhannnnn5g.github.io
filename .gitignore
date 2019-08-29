@@ -1,0 +1,4 @@
+# images folder in MyBlog source
+/post/MyBlogs/images/
+/post/MyBlogs/*.pdf
+/post/MyBlogs/*.code-workspace

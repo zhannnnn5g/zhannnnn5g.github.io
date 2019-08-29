@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-cn" lang="zh-cn">
+<head>
+  <link href="//gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.57.0" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Hugo-托管Markdown文档与站点源码 &middot; zhan5g&#39;s Blog</title>
+
+  
+  <link type="text/css" rel="stylesheet" href="http://zhannnnn5g.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="http://zhannnnn5g.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="http://zhannnnn5g.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="http://zhannnnn5g.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+</head>
+
+  <body class=" ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="http://zhannnnn5g.github.io/"><h1>zhan5g&#39;s Blog</h1></a>
+      <p class="lead">
+      An elegant open source and mobile first theme for <a href="http://hugo.spf13.com">hugo</a> made by <a href="http://twitter.com/mdo">@mdo</a>. Originally made for Jekyll.
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="http://zhannnnn5g.github.io/">Home</a> </li>
+        
+      </ul>
+    </nav>
+
+    <p>&copy; 2019. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>Hugo-托管Markdown文档与站点源码</h1>
+  <time datetime=2019-08-27T14:30:10&#43;0800 class="post-date">Tue, Aug 27, 2019</time>
+  <h2 id="托管markdown文档">托管Markdown文档</h2>
+
+<h3 id="为markdown文档创建私有仓库">为Markdown文档创建私有仓库</h3>
+
+<p>为了Markdown文档的保密性，通常我们不会直接把Markdown文档的源文件直接托管在静态站点上，而是将其单独存放于一个非公开的仓库中。</p>
+
+<p>为此，新建一个私有仓库<code>MyBlogs</code>，然后clone到本地。clone之前，首先要切换目录到<code>MySite/content/post</code>：</p>
+
+<pre><code>$ cd MySite/content/post
+$ git clone git@zhannnnn5g:zhannnnn5g/MyBlogs.git
+</code></pre>
+
+<p>然后，将所有的Markdown文档拷贝到<code>MyBlogs</code>目录下，上传提交即可。</p>
+
+<pre><code>$ cd MyBlogs
+$ git add .
+$ git commit -m &quot;Markdown source file: initial commit&quot;
+</code></pre>
+
+<h3 id="markdown文档的管理规则">Markdown文档的管理规则</h3>
+
+<p>梳理一下Markdown文档的组织管理规则，我们先看一下效果图：</p>
+
+<p><img src="/images/Hugo/Markdown文档的管理规则.png" alt="" /></p>
+
+<ul>
+<li>所有的Markdown文档都存放与<code>MyBlogs</code>目录下。使用VSCode打开<code>MyBlogs</code>目录，然后选择菜单<code>File</code>-&gt;Save Workspace As&hellip;<code>，名字为</code>myblogs-vscode<code>，选择保存路径，将其保存到</code>MyBlogs<code>目录下，这样我们就创建了一个名为</code>hugoblogs.code-workspace`的VSCode工作区。</li>
+<li><code>MyBlogs</code>目录下创建多个子目录，子目录对应Hugo中的<code>categories</code>。每一篇文档都归于某一个子目录。</li>
+<li>子目录下原则上不再创建子子目录，防止目录嵌套过深，<code>categories</code>不好管理。</li>
+<li>文档的名字规则：首先给定一个标签，确定该篇文档的内容范围，这个标签对应Hugo中的<code>tags</code>；然后是一个横线<code>-</code>；然后是文章的标题内容。</li>
+</ul>
+
+<h3 id="图片的组织方式">图片的组织方式</h3>
+
+<p>文档中引用的所有图片，放到一个单独的目录<code>MyBlogs\images</code>中。这样既便于在Markdown中进行引用，也方便直接拷贝到<code>MySite\static</code>目录中。之所以这样说，是因为这样做可以比较优雅的解决写文档时图片的预览与生成站点时图片的引用这两个问题。</p>
+
+<ul>
+<li>在写文档时，可以直接在Markdown中使用绝对路径形式的图片插入：<code>![](/images/xxx/yyy.png)</code>。由于使用VSCode打开<code>MyBlogs</code>时，当前工作区的根目录就是<code>MyBlogs</code>，因此，形如<code>/images/xxx/yyy.png</code>这种类型的路径，VSCode能够支持实时渲染。这对Markdown文档的实时编辑效果是一个极大的支持。</li>
+<li>在使用<code>hugo server --theme=hyde --buildDrafts --watch</code>预览站点时，Hugo要求图片放在<code>static\images</code>目录下，我们直接将<code>images</code>目录拷贝到<code>static</code>目录下即可。</li>
+</ul>
+
+<p>图片目录在使用的过程中有2点需要注意：</p>
+
+<ul>
+<li>由于<code>MyBlogs\images</code>目录中的内容不是Markdown文档，在使用<code>hugo</code>命令生成<code>public</code>目录时，<code>images</code>会被直接拷贝到<code>public\post\MyBlogs</code>下，而使用的图片的路径实际是在<code>public\images</code>下，这里的<code>public\post\MyBlogs\images</code>实际上多余，因此我们为<code>public</code>仓库的<code>.gitignore</code>文件添加一条过滤规则，过滤掉该目录：<code>/post/MyBlogs/images/</code>。</li>
+<li>在使用<code>hugo</code>命令预览站点，以及生成<code>public</code>目录时，图片需要放置在<code>MySite\static</code>目录中，我们需要把<code>images</code>目录拷贝到<code>MySite\static</code>目录中。</li>
+</ul>
+
+<h3 id="文档头的管理规则">文档头的管理规则</h3>
+
+<p>文档头设置的好坏，直接关系到文章管理的清晰与否。我们以下面的文档头为例，分析一下文档头的管理规则：</p>
+
+<pre><code>---
+title: &quot;Markdown-VSCode中常用操作总结&quot;
+date: 2019-08-23T18:19:33+08:00
+tags: [&quot;VSCode&quot;, &quot;Markdown&quot;]
+categories: [&quot;VSCode&quot;]
+draft: true
+---
+
+---
+title: &quot;Go-VSCode开发环境设置&quot;
+date: 2019-08-27T14:42:33+08:00
+tags: [&quot;VSCode&quot;, &quot;Go&quot;]
+categories: [&quot;VSCode&quot;]
+draft: true
+---
+
+---
+title: &quot;VSCode-常用插件总结&quot;
+date: 2019-08-23T17:42:33+08:00
+tags: [&quot;VSCode&quot;]
+categories: [&quot;VSCode&quot;]
+draft: true
+---
+</code></pre>
+
+<p><code>title</code>，<code>date</code>和<code>draft</code>的功能显而易见，我们不说了，主要说一下<code>tags</code>和<code>categories</code>的设置。</p>
+
+<ul>
+<li><code>categories</code>: 文章的分类，其取值固定为一个，即：当前Markdown文档所在的子目录的名字。</li>
+<li><code>tags</code>: 标签的来源主要有2个，一是当前Markdown文档所在的子目录，也就是<code>categories</code>的值；另外，如果文章名字中<code>-</code>之前的标签（确定该篇文档的内容范围）与<code>categories</code>的值不同，则也将其添加到<code>tags</code>中。</li>
+</ul>
+
+<h3 id="文档头的定制">文档头的定制</h3>
+
+<p>文档头的内容，是在<code>MySite\archetypes\default.md</code>中定制的。</p>
+
+<pre><code>---
+title: &quot;{{ replace .Name &quot;-&quot; &quot; &quot; | title }}&quot;
+date: {{ .Date }}
+draft: true
+---
+</code></pre>
+
+<p>可以对其进行修改，比如添加<code>tags</code>和<code>categories</code>：</p>
+
+<pre><code>---
+title: &quot;{{ replace .Name &quot;-&quot; &quot; &quot; | title }}&quot;
+date: {{ .Date }}
+tags: [&quot;default&quot;]
+categories: [&quot;default&quot;]
+draft: true
+---
+</code></pre>
+
+<p>之后，使用下面的命令创建Markdown文档，就可以自动生成文档头了：</p>
+
+<pre><code># 在MySite目录下，文件的相对路径如下
+$ hugo new content/post/MyBlogs/VSCode/HelloWorld.md
+</code></pre>
+
+<h2 id="托管站点源码">托管站点源码</h2>
+
+<h3 id="为站点源码创建私有仓库">为站点源码创建私有仓库</h3>
+
+<p>Hugo生成的站点代码，也就是<code>public</code>目录下的内容，我们托管在了Github的共有仓库<code>zhannnnn5g.github.io</code>中，但它存放的是生成的站点的成果物，而不是站点的源码，站点的源码存放到哪里呢？我们可以将其存放到Github的私有仓库中。</p>
+
+<p>为此，新建一个私有仓库<code>MySite</code>，然后clone到本地。</p>
+
+<pre><code>$ git clone git@zhannnnn5g:zhannnnn5g/MySite.git
+</code></pre>
+
+<p>我们把Hugo的站点源码拷贝到<code>MySite</code>目录中。在提交到Github之前，为了防止提交<code>public</code>目录和<code>post\MyBlogs</code>目录中的内容（这两个目录下的内容在单独的仓库中管理），创建一个<code>.gitignore</code>文件：</p>
+
+<pre><code># ignore hugo generated public folder
+/public/
+# ignore the markdown source folder
+/content/post/MyBlogs/
+</code></pre>
+
+<p>然后，提交代码：</p>
+
+<pre><code>$ git add .
+$ git commit -m &quot;Hugo site source code: initial commit&quot;
+</code></pre>
+
+<h3 id="images目录的特殊处理">images目录的特殊处理</h3>
+
+<p>每次写完文档之后，如果添加了图片到<code>MyBlogs\images</code>中，在使用<code>hugo</code>命令生成<code>public</code>之前，需要把<code>images</code>目录拷贝到<code>MySite\static</code>目录下，以便生成的站点能正常找到图片的路径。</p>
+
+<p>当然，你也可以为<code>MyBlogs</code>仓库设置一个<code>git commit</code>钩子，在每次提交Markdown文章之后，自动拷贝<code>images</code>目录到<code>MySite\static</code>目录下。</p>
+
+<h2 id="三个仓库间的关联关系">三个仓库间的关联关系</h2>
+
+<p>三个仓库间的关联关系如下图所示：</p>
+
+<p><img src="/images/Hugo/三个仓库间的关联关系.png" alt="" /></p>
+</div>
+
+
+    </main>
+
+    
+  </body>
+</html>

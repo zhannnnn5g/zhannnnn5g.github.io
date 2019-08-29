@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-cn" lang="zh-cn">
+<head>
+  <link href="//gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.57.0" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Hugo-在一台主机上管理多个SSH密钥 &middot; zhan5g&#39;s Blog</title>
+
+  
+  <link type="text/css" rel="stylesheet" href="http://zhannnnn5g.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="http://zhannnnn5g.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="http://zhannnnn5g.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="http://zhannnnn5g.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+</head>
+
+  <body class=" ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="http://zhannnnn5g.github.io/"><h1>zhan5g&#39;s Blog</h1></a>
+      <p class="lead">
+      An elegant open source and mobile first theme for <a href="http://hugo.spf13.com">hugo</a> made by <a href="http://twitter.com/mdo">@mdo</a>. Originally made for Jekyll.
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="http://zhannnnn5g.github.io/">Home</a> </li>
+        
+      </ul>
+    </nav>
+
+    <p>&copy; 2019. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>Hugo-在一台主机上管理多个SSH密钥</h1>
+  <time datetime=2019-08-26T16:52:33&#43;0800 class="post-date">Mon, Aug 26, 2019</time>
+  <h2 id="生成多个ssh密钥">生成多个ssh密钥</h2>
+
+<h3 id="ssh-keygen用法">ssh-keygen用法</h3>
+
+<pre><code>$ ssh-keygen -t rsa -b 2048 -C &quot;user2@163.com&quot; -f ~/.ssh/id_rsa_jlz2008
+</code></pre>
+
+<p>参数解释：</p>
+
+<ul>
+<li><code>-t type</code>: 指定要创建的密钥类型。可以使用：&rdquo;rsa1&rdquo;，&rdquo;rsa&rdquo;，&rdquo;dsa&rdquo;。</li>
+<li><code>-b bits</code>: 指定密钥长度。对于RSA密钥，最小要求768位，默认是2048位。一般省略该参数。</li>
+<li><code>-C comment</code>: 提供一个注释。</li>
+<li><code>-f filename</code>: 提供一个名字，以避免覆盖之前生成的默认密钥的名字。</li>
+</ul>
+
+<h3 id="linux下生成2个ssh密钥">Linux下生成2个ssh密钥</h3>
+
+<pre><code>$ ssh-keygen -t rsa -C &quot;user1@163.com&quot;
+$ ssh-keygen -t rsa -C &quot;user2@163.com&quot; -f ~/.ssh/id_rsa_jlz2008
+</code></pre>
+
+<h3 id="windows下生成2个ssh密钥">Windows下生成2个ssh密钥</h3>
+
+<p>1、Windows下，首先要安装好Git。安装好之后，右键打开&rdquo;Git Bash&rdquo;。
+2、之后的步骤，与Linux下生成ssh密钥相同。<code>-f</code>中指定的<code>~</code>目录也会相应转换为你当前用户的用户目录。</p>
+
+<pre><code>$ ssh-keygen -t rsa -C &quot;user1@163.com&quot;
+$ ssh-keygen -t rsa -C &quot;user2@163.com&quot; -f ~/.ssh/id_rsa_jlz2008
+</code></pre>
+
+<p>之后，就可以使用不同的<code>.pub</code>公钥，在不同的Github账号中配置 SSH keys 了。</p>
+
+<h2 id="管理多个ssh">管理多个SSH</h2>
+
+<p>将公钥添加到Github中后，我们要在本机进行设置，以便在本机能够管理多个SSH账号。</p>
+
+<h3 id="添加私钥">添加私钥</h3>
+
+<p>右键打开&rdquo;Git Bash&rdquo;，执行以下命令添加私钥：</p>
+
+<pre><code>$ ssh-agent bash
+$ ssh-add ~/.ssh/id_rsa
+$ ssh-add ~/.ssh/id_rsa_jlz2008
+</code></pre>
+
+<p>可以执行下面的命令查看添加的私钥，或清除私钥：</p>
+
+<pre><code># 查看私钥列表
+$ ssh-add -l
+
+# 清空私钥列表
+$ ssh-add -D
+</code></pre>
+
+<h3 id="添加配置文件">添加配置文件</h3>
+
+<p>在<code>~/.ssh</code>目录下新建一个<code>config</code>文件</p>
+
+<pre><code>$ touch config
+</code></pre>
+
+<p>添加如下内容，每个账号单独配置一个<code>Host</code>：</p>
+
+<pre><code># github01
+Host github.com
+HostName github.com
+User github01
+PreferredAuthentications publickey
+IdentityFile ~/.ssh/id_rsa
+
+# github02
+Host github02
+HostName github.com
+User github02
+PreferredAuthentications publickey
+IdentityFile ~/.ssh/id_rsa_jlz2008
+</code></pre>
+
+<ul>
+<li><code>Host</code>的名字可以取为自己喜欢的名字，不过这个会影响git相关命令，例如：<code>Host github01</code>这样定义的话，在clone时，<code>git@</code>后面紧跟的名字要改为<code>github01</code>: <code>git clone git@github01:PopFisher/AndroidRotateAnim.git</code>。这里我们对<code>github01</code>仍旧保持其<code>Host</code>为<code>github.com</code>，以便对该账户执行clone时我们不需修改<code>git@</code>后面的名字.</li>
+<li><code>HostName</code>: 这个是真实的域名地址。</li>
+<li><code>User</code>: 配置使用用户名。</li>
+<li><code>PreferredAuthentications</code>: 配置登录时用什么权限认证，可设为<code>publickey</code>,<code>password publickey</code>,<code>keyboard-interactive</code>等。</li>
+<li><code>IdentityFile</code>: 这里是id_rsa文件的地址。</li>
+</ul>
+
+<p>然后测试是否能够连接成功，如果显示如下，表明成功：</p>
+
+<pre><code>$ ssh -T git@github.com
+Hi github01! You've successfully authenticated, but GitHub does not provide shell access.
+
+$ ssh -T git@github02
+Hi github02! You've successfully authenticated, but GitHub does not provide shell access.
+</code></pre>
+
+<h2 id="更新git的配置">更新Git的配置</h2>
+
+<p>在管理多个SSH的配置完成后，我们还需要更改Git的配置，以便在不同的Github账号下使用不同的用户名和邮箱。</p>
+
+<p>1、保持global的user和email，这样对<code>github01</code>的仓库，我们使用的仍是global的user和email。</p>
+
+<pre><code>$ git config --global user.name &quot;你的第一个github邮箱地址&quot;
+$ git config --global user.email &quot;github01&quot;
+</code></pre>
+
+<p>2、对第二个Github账号，为其每个仓库设置仓库级的user和email，</p>
+
+<pre><code># clone repository
+$ git clone git@github02:PopFisher/AndroidRotateAnim.git
+
+# 进入仓库目录，设置仓库级别的user和email
+$ cd AndroidRotateAnim
+$ git config  user.email &quot;你的第二个github邮箱地址&quot;
+$ git config  user.name &quot;github02&quot;
+</code></pre>
+
+<p>3、查看设置结果：</p>
+
+<pre><code>$ git config --global --list
+user.name=github01
+user.email=github01@163.com
+core.autocrlf=true
+
+$ git config --local --list
+core.repositoryformatversion=0
+core.filemode=false
+core.bare=false
+core.logallrefupdates=true
+core.symlinks=false
+core.ignorecase=true
+core.hidedotfiles=dotGitOnly
+branch.master.remote=origin
+branch.master.merge=refs/heads/master
+...
+user.email=github02@163.com
+user.name=github02
+</code></pre>
+
+<h2 id="参考">参考：</h2>
+
+<p><a href="https://www.jianshu.com/p/7ee167911597">一个git配置多个github账号</a></p>
+</div>
+
+
+    </main>
+
+    
+  </body>
+</html>
